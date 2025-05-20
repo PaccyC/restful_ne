@@ -6,8 +6,12 @@ import userRouter from "./routes/user.routes"
 import adminRouter from "./routes/admin.routes"
 import authRouter from "./routes/auth.routes"
 import parkingRouter from "./routes/parking.routes"
+import carMovementRouter from "./routes/car_movement.routes"
+
+
 import swaggerUi from 'swagger-ui-express'
 import swaggerDoc from "./swagger/swagger.json"
+
 
 
 
@@ -35,7 +39,7 @@ app.use("/api/v1/user",userRouter)
 app.use("/api/v1/admin",adminRouter)
 app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/parking",parkingRouter)
-
+app.use("/api/v1/car-movement",carMovementRouter)
 
 
 // Swagger endpoint

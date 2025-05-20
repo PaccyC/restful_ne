@@ -56,9 +56,9 @@ model CarMovement {
   plateNumber String
    parkingCode String
   parking Parking @relation(fields: [parkingCode],references: [code])
-  entryDateTime DateTime @map("entry_date_time") @default(dbgenerated("NULL"))
+  entryDateTime DateTime @map("entry_date_time")
   exitDateTime DateTime @map("exit_date_time") @default(dbgenerated("NULL"))
-   chargedAmount BigInt @map("charged_amount") @default(0)
+   chargedAmount Int @map("charged_amount") @default(0)
 
    @@map("car_movements")
 }

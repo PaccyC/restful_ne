@@ -3394,7 +3394,7 @@ export namespace Prisma {
   }
 
   export type CarMovementSumAggregateOutputType = {
-    chargedAmount: bigint | null
+    chargedAmount: number | null
   }
 
   export type CarMovementMinAggregateOutputType = {
@@ -3403,7 +3403,7 @@ export namespace Prisma {
     parkingCode: string | null
     entryDateTime: Date | null
     exitDateTime: Date | null
-    chargedAmount: bigint | null
+    chargedAmount: number | null
   }
 
   export type CarMovementMaxAggregateOutputType = {
@@ -3412,7 +3412,7 @@ export namespace Prisma {
     parkingCode: string | null
     entryDateTime: Date | null
     exitDateTime: Date | null
-    chargedAmount: bigint | null
+    chargedAmount: number | null
   }
 
   export type CarMovementCountAggregateOutputType = {
@@ -3554,7 +3554,7 @@ export namespace Prisma {
     parkingCode: string
     entryDateTime: Date
     exitDateTime: Date
-    chargedAmount: bigint
+    chargedAmount: number
     _count: CarMovementCountAggregateOutputType | null
     _avg: CarMovementAvgAggregateOutputType | null
     _sum: CarMovementSumAggregateOutputType | null
@@ -3637,7 +3637,7 @@ export namespace Prisma {
       parkingCode: string
       entryDateTime: Date
       exitDateTime: Date
-      chargedAmount: bigint
+      chargedAmount: number
     }, ExtArgs["result"]["carMovement"]>
     composites: {}
   }
@@ -4067,7 +4067,7 @@ export namespace Prisma {
     readonly parkingCode: FieldRef<"CarMovement", 'String'>
     readonly entryDateTime: FieldRef<"CarMovement", 'DateTime'>
     readonly exitDateTime: FieldRef<"CarMovement", 'DateTime'>
-    readonly chargedAmount: FieldRef<"CarMovement", 'BigInt'>
+    readonly chargedAmount: FieldRef<"CarMovement", 'Int'>
   }
     
 
@@ -4623,20 +4623,6 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
-
-
-  /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
   /**
    * Deep Input Types
    */
@@ -4786,7 +4772,7 @@ export namespace Prisma {
     parkingCode?: StringFilter<"CarMovement"> | string
     entryDateTime?: DateTimeFilter<"CarMovement"> | Date | string
     exitDateTime?: DateTimeFilter<"CarMovement"> | Date | string
-    chargedAmount?: BigIntFilter<"CarMovement"> | bigint | number
+    chargedAmount?: IntFilter<"CarMovement"> | number
     parking?: XOR<ParkingScalarRelationFilter, ParkingWhereInput>
   }
 
@@ -4809,7 +4795,7 @@ export namespace Prisma {
     parkingCode?: StringFilter<"CarMovement"> | string
     entryDateTime?: DateTimeFilter<"CarMovement"> | Date | string
     exitDateTime?: DateTimeFilter<"CarMovement"> | Date | string
-    chargedAmount?: BigIntFilter<"CarMovement"> | bigint | number
+    chargedAmount?: IntFilter<"CarMovement"> | number
     parking?: XOR<ParkingScalarRelationFilter, ParkingWhereInput>
   }, "id">
 
@@ -4836,7 +4822,7 @@ export namespace Prisma {
     parkingCode?: StringWithAggregatesFilter<"CarMovement"> | string
     entryDateTime?: DateTimeWithAggregatesFilter<"CarMovement"> | Date | string
     exitDateTime?: DateTimeWithAggregatesFilter<"CarMovement"> | Date | string
-    chargedAmount?: BigIntWithAggregatesFilter<"CarMovement"> | bigint | number
+    chargedAmount?: IntWithAggregatesFilter<"CarMovement"> | number
   }
 
   export type UserCreateInput = {
@@ -4989,9 +4975,9 @@ export namespace Prisma {
   export type CarMovementCreateInput = {
     id?: string
     plateNumber: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
     parking: ParkingCreateNestedOneWithoutCarMovementInput
   }
 
@@ -4999,9 +4985,9 @@ export namespace Prisma {
     id?: string
     plateNumber: string
     parkingCode: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
   }
 
   export type CarMovementUpdateInput = {
@@ -5009,7 +4995,7 @@ export namespace Prisma {
     plateNumber?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
     parking?: ParkingUpdateOneRequiredWithoutCarMovementNestedInput
   }
 
@@ -5019,16 +5005,16 @@ export namespace Prisma {
     parkingCode?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarMovementCreateManyInput = {
     id?: string
     plateNumber: string
     parkingCode: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
   }
 
   export type CarMovementUpdateManyMutationInput = {
@@ -5036,7 +5022,7 @@ export namespace Prisma {
     plateNumber?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarMovementUncheckedUpdateManyInput = {
@@ -5045,7 +5031,7 @@ export namespace Prisma {
     parkingCode?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5272,17 +5258,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
   export type ParkingScalarRelationFilter = {
     is?: ParkingWhereInput
     isNot?: ParkingWhereInput
@@ -5321,22 +5296,6 @@ export namespace Prisma {
 
   export type CarMovementSumOrderByAggregateInput = {
     chargedAmount?: SortOrder
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type ParkingCreateNestedManyWithoutUserInput = {
@@ -5469,14 +5428,6 @@ export namespace Prisma {
     create?: XOR<ParkingCreateWithoutCarMovementInput, ParkingUncheckedCreateWithoutCarMovementInput>
     connectOrCreate?: ParkingCreateOrConnectWithoutCarMovementInput
     connect?: ParkingWhereUniqueInput
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
   }
 
   export type ParkingUpdateOneRequiredWithoutCarMovementNestedInput = {
@@ -5614,33 +5565,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
   export type ParkingCreateWithoutUserInput = {
     code: string
     parkingName: string
@@ -5727,17 +5651,17 @@ export namespace Prisma {
   export type CarMovementCreateWithoutParkingInput = {
     id?: string
     plateNumber: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
   }
 
   export type CarMovementUncheckedCreateWithoutParkingInput = {
     id?: string
     plateNumber: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
   }
 
   export type CarMovementCreateOrConnectWithoutParkingInput = {
@@ -5808,7 +5732,7 @@ export namespace Prisma {
     parkingCode?: StringFilter<"CarMovement"> | string
     entryDateTime?: DateTimeFilter<"CarMovement"> | Date | string
     exitDateTime?: DateTimeFilter<"CarMovement"> | Date | string
-    chargedAmount?: BigIntFilter<"CarMovement"> | bigint | number
+    chargedAmount?: IntFilter<"CarMovement"> | number
   }
 
   export type ParkingCreateWithoutCarMovementInput = {
@@ -5900,9 +5824,9 @@ export namespace Prisma {
   export type CarMovementCreateManyParkingInput = {
     id?: string
     plateNumber: string
-    entryDateTime?: Date | string
+    entryDateTime: Date | string
     exitDateTime?: Date | string
-    chargedAmount?: bigint | number
+    chargedAmount?: number
   }
 
   export type CarMovementUpdateWithoutParkingInput = {
@@ -5910,7 +5834,7 @@ export namespace Prisma {
     plateNumber?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarMovementUncheckedUpdateWithoutParkingInput = {
@@ -5918,7 +5842,7 @@ export namespace Prisma {
     plateNumber?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarMovementUncheckedUpdateManyWithoutParkingInput = {
@@ -5926,7 +5850,7 @@ export namespace Prisma {
     plateNumber?: StringFieldUpdateOperationsInput | string
     entryDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     exitDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    chargedAmount?: BigIntFieldUpdateOperationsInput | bigint | number
+    chargedAmount?: IntFieldUpdateOperationsInput | number
   }
 
 

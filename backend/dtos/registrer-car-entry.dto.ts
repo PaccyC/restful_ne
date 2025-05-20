@@ -15,10 +15,5 @@ export class RegisterCarEntryDto{
     @IsNotEmpty()
     entryDateTime:string;
 
-     @IsString()
-    @IsNotEmpty()
-    exitDateTime:string;
 
-    @IsNotEmpty()
-    chargedAmount:string;
 }
