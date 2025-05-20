@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EROLE {
+  ADMIN
+  ATTENDANT
+}
+
+model User {
+  id        String    @id @default(uuid())
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  email     String    @unique @map("email")
+  password  String    @map("password")
+  role      EROLE     @map("role")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updatedAt")
+  parking   Parking[]
+
+  @@map("users")
+}
+
+model Parking {
+  code               String @id @unique
+  parkingName        String @map("parking_name")
+  availableSpaces    Int    @map("available_spaces")
+  location           String @map("location")
+  chargingFeePerHour Float  @map("charging_fee_per_hour")
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  carMovement CarMovement[]
+}
+
+model CarMovement {
+  id            String   @id @default(uuid())
+  plateNumber   String
+  parkingCode   String
+  parking       Parking  @relation(fields: [parkingCode], references: [code])
+  entryDateTime DateTime @default(dbgenerated("NULL")) @map("entry_date_time")
+  exitDateTime  DateTime @default(dbgenerated("NULL")) @map("exit_date_time")
+  chargedAmount BigInt   @default(0) @map("charged_amount")
+
+  @@map("car_movements")
+}
