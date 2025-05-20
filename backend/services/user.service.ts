@@ -20,7 +20,7 @@ const signup =async(registerDto:RegisterDto)=>{
             data:{
                 ...registerDto,
                 password:hash,
-                role: "USER"
+                role: "ATTENDANT"
             }
         })
 

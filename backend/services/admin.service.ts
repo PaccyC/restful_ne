@@ -38,9 +38,7 @@ const getUsers= async()=>{
     try {
         
         const users= await prisma.user.findMany({
-            include:{
-                vehicles: true
-            }
+        
         });
         return users;
     } catch (error) {

@@ -2,9 +2,10 @@ import express from'express';
 import dotenv from 'dotenv';
 import cors from 'cors'
 import bodyParser from 'body-parser';
-// import userRouter from "./routes/user.routes"
-// import adminRouter from "./routes/admin.routes"
-
+import userRouter from "./routes/user.routes"
+import adminRouter from "./routes/admin.routes"
+import authRouter from "./routes/auth.routes"
+import parkingRouter from "./routes/parking.routes"
 import swaggerUi from 'swagger-ui-express'
 import swaggerDoc from "./swagger/swagger.json"
 
@@ -30,9 +31,10 @@ app.use(express.json())
 
 // Route middlewares
 
-// app.use("/api/v1/user",userRouter)
-// app.use("/api/v1/admin",adminRouter)
-// app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/user",userRouter)
+app.use("/api/v1/admin",adminRouter)
+app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/parking",parkingRouter)
 
 
 
