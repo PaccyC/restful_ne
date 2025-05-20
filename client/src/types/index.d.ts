@@ -51,57 +51,38 @@ type RegisterResponse ={
   }
 }
 
-export type Slot=  {
-  id:string;
-    slotNumber: string;
-    floor:number;
-    status: string;
-    type:string;
+export type Parking=  {
+    code:string;
+    parkingName: string;
+    availableSpaces:number;
+    chargingFeePerHour: number;
+    
 }
 
-export type SlotsResponse ={
+export type ParkingsResponse ={
   
   message: string;
   status: number;
-  data:Slot[];
+  data:Parking[];
 }
 
-export type ParkingSession= {
-  id:number;
-  slotId:string;
-  userId:string;
-  status:string;
-  startTime:string;
-  endTime:string;
-  date:string;
-  duration:number;
-  totalFee:number;
-
-  createdAt:string;
-  updatedAt:string;
+export type ParkingResponse= {
+     code:string;
+    parkingName: string;
+    availableSpaces:number;
+    chargingFeePerHour: number;
+    location:string;
+    userId:string
+    
 }
 
-export type RequestParkingSessionResponse ={
+export type CreateParkingResponse ={
   message: string;
   status: number
-  data: ParkingSession;
+  data: ParkingResponse;
 }
 
-export type GetParkingSessionRequestsResponse ={
-  message: string;
-  status: number;
-  data: ParkingSession[];
-}
-export type ApproveParkingSessionRequestsResponse ={
-  message: string;
-  status: number;
-  data: ParkingSession;
-}
 
-export interface BookParkingSessionDto {
-  userId: string;
-  slotId: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-}
+
+
+

@@ -47,13 +47,33 @@ model Parking {
 }
 
 model CarMovement {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   plateNumber   String
   parkingCode   String
-  parking       Parking  @relation(fields: [parkingCode], references: [code])
-  entryDateTime DateTime @default(dbgenerated("NULL")) @map("entry_date_time")
-  exitDateTime  DateTime @default(dbgenerated("NULL")) @map("exit_date_time")
-  chargedAmount BigInt   @default(0) @map("charged_amount")
+  parking       Parking   @relation(fields: [parkingCode], references: [code])
+  entryDateTime DateTime  @map("entry_date_time")
+  exitDateTime  DateTime? @default(dbgenerated("NULL")) @map("exit_date_time")
+  chargedAmount Int       @default(0) @map("charged_amount")
 
   @@map("car_movements")
+}
+
+model Ticket {
+  id            Int      @id @default(autoincrement())
+  plateNumber   String
+  parkingCode   String
+  entryDateTime DateTime @map("entry_date_time")
+
+  @@map("tickets")
+}
+
+model Bill {
+  id            Int       @id @default(autoincrement())
+  plateNumber   String
+  parkingCode   String
+  entryDateTime DateTime  @map("entry_date_time")
+  exitDateTime  DateTime? @map("exit_date_time")
+  chargedAmount Int       @map("charged_amount")
+
+  @@map("bills")
 }

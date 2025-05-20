@@ -15,8 +15,6 @@ const registerCarEntry=  async(req:Request,res:Response)=>{
                 "Car entry registered successfully",201,response
             )
         )
-        
-    
 }
 
 const registerCarExit= async(req:Request,res:Response)=>{

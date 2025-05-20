@@ -130,7 +130,7 @@ const Register = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button className="bg-blue-600 text-white text-lg px-6 py-2" type="submit">Submit</Button>
       </form>
     </Form>
     </div>

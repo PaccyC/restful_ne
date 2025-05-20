@@ -1,71 +1,44 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { QUERY_KEYS } from "./queryKey"
-import { deleteParkingSlot, getAllSlots } from "@/api/slots"
-import { approveParkingSession, bookParkingSession, getAllParkingSessions, getPendingParkingSessions } from "@/api/parking-request"
-import type { BookParkingSessionDto } from "@/types"
+import { createParking, getAllParkings } from "@/api/parkings"
 
 
 
-export const useGetAllParkingSlots= ()=>{
-    return useQuery({
-        queryKey: [QUERY_KEYS.GET_ALL_PARKING_SLOTS],
-        queryFn: ()=> getAllSlots()
-    })
+
+interface CreateParkingInput {
+  code: string;
+  parkingName: string;
+  availableSpaces: number;
+  chargingFeePerHour: number;
+  userId: string;
 }
 
-export const useDeleteParkingSlotMutation= ()=>{
-    const queryClient= useQueryClient();
-
-    return useMutation({
-        mutationFn: (id:string)=> deleteParkingSlot(id),
-        onSuccess: ()=>{
-            queryClient.invalidateQueries({
-                queryKey:[QUERY_KEYS.GET_ALL_PARKING_SLOTS]
-            })
-        }
-    })
-}
-
-export const useGetPendingParkingRequestsQuery= ()=>{
+export const useGetAllParkings= ()=>{
     return useQuery({
-        queryKey: [QUERY_KEYS.GET_PENDING_PARKING_REQUESTS],
-        queryFn: ()=>getPendingParkingSessions()
-    })
-} 
-
-export const useGetAllParkingRequestsQuery= ()=>{
-    return useQuery({
-        queryKey: [QUERY_KEYS.GET_ALL_PARKING_REQUESTS],
-        queryFn: ()=>getAllParkingSessions()
+        queryKey: [QUERY_KEYS.GET_ALL_PARKINGS],
+        queryFn: ()=> getAllParkings()
     })
 }
 
 
 
-export const useBookParkingSlotMutation= ()=>{
+
+
+export const useCreateParkingMutation= ()=>{
     const queryClient= useQueryClient();
     return useMutation( {
-        mutationFn: async ({userId,slotId,date,startTime,endTime}:BookParkingSessionDto)=>bookParkingSession(
-            {userId,slotId,date,startTime,endTime}
+        mutationFn: async ({code,parkingName,availableSpaces,chargingFeePerHour,userId}:CreateParkingInput)=>createParking(
+            code,
+            parkingName,
+            availableSpaces,
+            chargingFeePerHour,
+            userId
         ),
         onSuccess: ()=>{
      queryClient.invalidateQueries({
-        queryKey:[QUERY_KEYS.GET_PENDING_PARKING_REQUESTS]
+        queryKey:[QUERY_KEYS.GET_ALL_PARKINGS]
      })
         }
     })
 }
 
-export const useApproveParkingSessionMutation= ()=>{
-    const queryClient= useQueryClient();
-    return useMutation({
-        mutationFn: (id:number)=>approveParkingSession(id),
-        onSuccess: ()=>{
-            queryClient.invalidateQueries({
-                queryKey:[QUERY_KEYS.GET_PENDING_PARKING_REQUESTS,
-                    QUERY_KEYS.GET_ALL_PARKING_SLOTS
-                ]
-             })
-        }
-    })
-}

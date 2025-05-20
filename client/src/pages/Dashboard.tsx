@@ -27,11 +27,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import {
-  useBookParkingSlotMutation,
-  useDeleteParkingSlotMutation,
-  useGetAllParkingSlots,
-} from "@/lib/react-query/queriesAndMutations";
+
 import {
   Dialog,
   DialogContent,
@@ -42,74 +38,68 @@ import {
 } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { bookParkingSessionSchema } from "@/schema";
 import type { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import type { Slot } from "@/types";
+
 import { useSearchContext } from "@/hooks/useSearchContext";
-import { searchSlots } from "@/api/slots";
+
 
 const Dashboard = () => {
-  const [fetchedSlots, setSlots] = useState<Slot[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { searchQuery } = useSearchContext();
   
   const { id: userId } = JSON.parse(localStorage.getItem("user") || "{}");
 
-  const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      if (!searchQuery.trim()) return;
-      setLoading(true);
-      try {
-        const results = await searchSlots(searchQuery);
-        setSlots(results);
-      } catch (error) {
-        console.error("Search failed:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSearchResults = async () => {
+  //     if (!searchQuery.trim()) return;
+  //     setLoading(true);
+  //     try {
+  //       const results = await searchSlots(searchQuery);
+  //       setSlots(results);
+  //     } catch (error) {
+  //       console.error("Search failed:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchSearchResults();
-  }, [searchQuery]);
+  //   fetchSearchResults();
+  // }, [searchQuery]);
 
-  const { data: slots, isFetching: isLoading } = useGetAllParkingSlots();
-  const { mutateAsync: deleteSlot } = useDeleteParkingSlotMutation();
-  const { mutate: bookSlot } = useBookParkingSlotMutation();
 
-  const form = useForm<z.infer<typeof bookParkingSessionSchema>>({
-    resolver: zodResolver(bookParkingSessionSchema),
-    defaultValues: {
-      userId: "",
-      slotId: "",
-      date: "",
-      startTime: "",
-      endTime: "",
-    },
-  });
+  // const form = useForm<z.infer<typeof bookParkingSessionSchema>>({
+  //   resolver: zodResolver(bookParkingSessionSchema),
+  //   defaultValues: {
+  //     userId: "",
+  //     slotId: "",
+  //     date: "",
+  //     startTime: "",
+  //     endTime: "",
+  //   },
+  // });
 
-  async function onSubmit(values: z.infer<typeof bookParkingSessionSchema>) {
-    if (!selectedSlotId || !userId) return;
+  // async function onSubmit(values: z.infer<typeof bookParkingSessionSchema>) {
+  //   if (!selectedSlotId || !userId) return;
 
-    try {
-      bookSlot({
-        ...values,
-        userId,
-        slotId: selectedSlotId,
-      });
+  //   try {
+  //     bookSlot({
+  //       ...values,
+  //       userId,
+  //       slotId: selectedSlotId,
+  //     });
 
-      toast.success("Parking slot booked successfully!");
-      form.reset(); // Reset form
-      setSelectedSlotId(null); // Close dialog
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to book the slot.");
-    }
-  }
+  //     toast.success("Parking slot booked successfully!");
+  //     form.reset(); // Reset form
+  //     setSelectedSlotId(null); // Close dialog
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Failed to book the slot.");
+  //   }
+  // }
 
   return (
     <>
@@ -211,11 +201,11 @@ const Dashboard = () => {
           <h3 className="text-3xl font-semibold">Parking Slots For You</h3>
 
           {/* Table */}
-          {isLoading && (
+          {/* {isLoading && (
             <p className="text-sm text-gray-600 text-center">Loading...</p>
-          )}
+          )} */}
 
-          <Table>
+          {/* <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Slot Number</TableHead>
@@ -354,9 +344,9 @@ const Dashboard = () => {
   )}
 </TableBody>
 
-          </Table>
+          </Table> */}
 
-          <Pagination>
+          {/* <Pagination>
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious href="#" />
@@ -371,7 +361,7 @@ const Dashboard = () => {
                 <PaginationNext href="#" />
               </PaginationItem>
             </PaginationContent>
-          </Pagination>
+          </Pagination> */}
         </div>
       </div>
     </>

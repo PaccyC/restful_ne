@@ -25,8 +25,8 @@ const navBarLinks = [
   },
   {
     id: 2,
-    title: "Bookings",
-    route: "/bookings",
+    title: "Parkings",
+    route: "/parkings",
     icon: MdEventSeat,
   },
   {
@@ -37,8 +37,8 @@ const navBarLinks = [
   },
   {
     id: 4,
-    title: "Reviews",
-    route: "/reviews",
+    title: "Car movements",
+    route: "/car-movements",
     icon: MdRateReview,
   },
   {

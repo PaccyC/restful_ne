@@ -149,6 +149,22 @@ exports.Prisma.CarMovementScalarFieldEnum = {
   chargedAmount: 'chargedAmount'
 };
 
+exports.Prisma.TicketScalarFieldEnum = {
+  id: 'id',
+  plateNumber: 'plateNumber',
+  parkingCode: 'parkingCode',
+  entryDateTime: 'entryDateTime'
+};
+
+exports.Prisma.BillScalarFieldEnum = {
+  id: 'id',
+  plateNumber: 'plateNumber',
+  parkingCode: 'parkingCode',
+  entryDateTime: 'entryDateTime',
+  exitDateTime: 'exitDateTime',
+  chargedAmount: 'chargedAmount'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -158,6 +174,11 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
 exports.EROLE = exports.$Enums.EROLE = {
   ADMIN: 'ADMIN',
   ATTENDANT: 'ATTENDANT'
@@ -166,7 +187,9 @@ exports.EROLE = exports.$Enums.EROLE = {
 exports.Prisma.ModelName = {
   User: 'User',
   Parking: 'Parking',
-  CarMovement: 'CarMovement'
+  CarMovement: 'CarMovement',
+  Ticket: 'Ticket',
+  Bill: 'Bill'
 };
 
 /**
