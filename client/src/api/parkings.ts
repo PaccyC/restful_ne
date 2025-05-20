@@ -14,15 +14,19 @@ export const getAllParkings= async()=>{
 }
 
 
-export const createParking=async(code:string,
+export const createParking=async(
+    code:string,
     parkingName:string,
     availableSpaces:number,
-    chargingFeePerHour:number,userId:string)=>{
+    location: string,
+    chargingFeePerHour:number,
+    userId:string)=>{
     try {
         const response= await protectedApiClient.post<CreateParkingResponse>("/parking/create",{
             code,
             parkingName,
             availableSpaces,
+            location,
             chargingFeePerHour,
             userId
         })

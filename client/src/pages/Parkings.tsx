@@ -43,7 +43,7 @@ const Parkings = () => {
     
 
     const {data:parkings}= useGetAllParkings()
-    const{mutateAsync:createParking,isPending,isError}=useCreateParkingMutation()
+    const{mutateAsync:createParking,isPending,isError,error}=useCreateParkingMutation()
 
 
 
@@ -64,7 +64,7 @@ const Parkings = () => {
 
              const dataWithUserId = {
       ...values,
-      userId: user!.id, // add the user ID here
+      userId: user!.id, 
     };
 
     try {
@@ -209,7 +209,7 @@ const Parkings = () => {
                                     </FormItem>
                                   )}
                                 />
-
+                                
                                 <Button
                                   type="submit"
                                 //   disabled={isLoading}
@@ -219,6 +219,7 @@ const Parkings = () => {
                                 </Button>
                               </form>
                             </Form>
+                            {isError && <p className="text-red-500 text-center">{error.message}</p>}
                           </DialogContent>
                         </Dialog>
       

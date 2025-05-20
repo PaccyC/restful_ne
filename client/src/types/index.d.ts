@@ -83,6 +83,36 @@ export type CreateParkingResponse ={
 }
 
 
+export type CarMovement ={
+   plateNumber: string
+  parkingCode: string
+  entryDateTime:string
+  exitDateTime:string
+  chargedAmount: number
+}
+export type RegisterCarEntryResponse ={
+
+  message:string;
+  status:number;
+  data: CarMovement
+}
+
+export type RegisterCarExitResponse ={
+
+  message:string;
+  status:number;
+  data: CarMovement
+}
+
+export type CarMovementsResponse= {
+   message:string;
+  status:number;
+  data: CarMovement[]
+}
+
+
+
+
 
 
 

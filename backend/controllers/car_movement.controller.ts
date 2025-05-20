@@ -64,11 +64,24 @@ export const getCarMovementsByExitTime = async (req: Request, res: Response) => 
 };
 
 
+ const getCarMovements= async(req:Request,res:Response)=>{
+  try {
+    const data = await carMovementService.getAllCarMovements();
+     res.status(200).json(
+        ApiResponse.success("car movements retrieved successfully",200,data)
+    );
+    
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+}
+
 
 
 export const carMovementController={
     registerCarEntry,
     registerCarExit,
     getCarMovementsByEntryTime,
-    getCarMovementsByExitTime
+    getCarMovementsByExitTime,
+    getCarMovements
 }

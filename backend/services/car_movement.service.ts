@@ -127,6 +127,16 @@ const getCarMovementsByExitTime = async (start: string, end: string) => {
     }
 };
 
+const getAllCarMovements= async()=>{
+    try {
+        const carMovements= await  prisma.carMovement.findMany();
+        return carMovements;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Failed to fetch  car movements");
+    }
+}
+
 
 // utility function to get parking hours
 
@@ -149,9 +159,11 @@ function calculateParkingHours(entryDateTime: string, exitDateTime: string) {
 
 
 
+
 export const carMovementService = {
     registerCarEntry,
     registerCarExit,
     getCarMovementsByEntryTime,
-    getCarMovementsByExitTime
+    getCarMovementsByExitTime,
+    getAllCarMovements
 }

@@ -27,7 +27,17 @@ export const loginSchema = z.object({
 export const createparkingSchema = z.object({
     code: z.string(),
     parkingName: z.string(),
-    availableSpaces: z.number(),
+    availableSpaces: z.coerce.number().min(0),
     location: z.string(),
-    chargingFeePerHour: z.number(),
+    chargingFeePerHour: z.coerce.number().min(1)
+})
+
+export const registerCarEntrySchema = z.object({
+    plateNumber: z.string(),
+    parkingCode: z.string(),
+    entryDateTime: z.string().refine(
+    (value) => !isNaN(new Date(value).getTime()),
+    {
+      message: "Invalid date",
+    })
 })
