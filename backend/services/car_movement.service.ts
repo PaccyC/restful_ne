@@ -33,6 +33,15 @@ const registerCarEntry = async (registerCarEntryDto: RegisterCarEntryDto) => {
             }
         })
 
+        // Create a ticker 
+         await prisma.ticket.create({
+            data:{
+                entryDateTime: new Date(newCarEntry.entryDateTime),
+                parkingCode:newCarEntry.parkingCode,
+                plateNumber: newCarEntry.plateNumber
+            }
+         })
+
 
         return newCarEntry
 
@@ -72,7 +81,6 @@ const registerCarExit = async (carMovementId: string, exitDateTime: string) => {
                 ...carMovement,
                 chargedAmount: totalAmount,
                 exitDateTime: new Date(exitDateTime)
-
             }
         })
 
@@ -85,6 +93,19 @@ const registerCarExit = async (carMovementId: string, exitDateTime: string) => {
                 availableSpaces: parking.availableSpaces + 1
             }
         })
+
+
+        // Create a new Bill
+    await prisma.bill.create({
+        data:{
+            plateNumber:updatedCarMovement.plateNumber,
+            parkingCode:updatedCarMovement.parkingCode,
+            entryDateTime:updatedCarMovement.entryDateTime,
+            exitDateTime:updatedCarMovement.exitDateTime,
+            chargedAmount: updatedCarMovement.chargedAmount
+        }
+    })
+
         return updatedCarMovement;
     } catch (error) {
         console.log(error);
